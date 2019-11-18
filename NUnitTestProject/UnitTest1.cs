@@ -15,8 +15,8 @@ namespace Tests
         private const string SEARCH_FIELD_XPATH = "//input[@class = 'gLFyf gsfi']";
         private const string SEARCH_FIELD_CSS = "input[class = 'gLFyf gsfi']";
 
-        private const string SEARCH_BUTTON_XPATH = "//div[@class = 'VlcLAe']//input[@class = 'gNO89b']";
-        private const string SEARCH_BUTTON_CSS = "div[class = 'VlcLAe'] input[class = 'gNO89b']";
+        private const string SEARCH_BUTTON_XPATH = "//div[@class = 'tfB0Bf']//input[@class = 'gNO89b']";
+        private const string SEARCH_BUTTON_CSS = "div[class = 'tfB0Bf'] input[class = 'gNO89b']";
 
         private const string WIKI_RESULT_XPATH = "//h3/span[text()='XPath - Wikipedia']/../..";
         private const string WIKI_RESULT_CSS = "div[class = 'r'] a[href $= 'wiki/XPath']";
