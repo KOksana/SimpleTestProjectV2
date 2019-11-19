@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
-using WatiN.Core;
-using System.Threading;
-
 using System;
+using System.Threading;
+using WatiN.Core;
+using WatiN.Core.Native.Windows;
 
 namespace Tests
 {
@@ -11,9 +11,9 @@ namespace Tests
     public class Tests
     {
         private IE _driver;
-        private const string URL = "https://www.google.com/";
+        private const string Url = "https://www.google.com/";
 
-        private Uri URI = new Uri(URL);
+        private readonly Uri _uri = new Uri(Url);
 
         private const string SEARCH_FIELD_CSS = "input[class = 'gLFyf gsfi']";
 
@@ -27,12 +27,13 @@ namespace Tests
         public void Setup()
         {
             _driver = new IE();
+            _driver.ShowWindow(NativeMethods.WindowShowStyle.ShowMaximized);
         }
 
         [Test]
         public void Test1()
         {
-            _driver.NativeBrowser.NavigateTo(URI);
+            _driver.NativeBrowser.NavigateTo(_uri);
             WaitUntilDriverIsFree();
 
             _driver.TextField(Find.BySelector(SEARCH_FIELD_CSS)).TypeText("xpath");
@@ -58,10 +59,8 @@ namespace Tests
 
         private void WaitUntilDriverIsFree()
         {
-            while (((SHDocVw.InternetExplorerClass)(_driver.InternetExplorer)).Busy)
-            {
-                Thread.Sleep(2000);
-            }
+            if (( (SHDocVw.InternetExplorerClass) _driver.InternetExplorer).Busy)
+                _driver.WaitForComplete();
         }
     }
 }
